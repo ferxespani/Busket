@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Busket
 {
@@ -13,14 +13,19 @@ namespace Busket
         public override int GuessNumber()
         {
             List<int> list = new List<int>();
-            int temp = Busk.rand.Next(40, 141);
+            Console.WriteLine($"{Name} is thinking about number.... ");
+            Thread.Sleep(1000);
+            int temp = new Random().Next(40, 141);
             while (list.Contains(temp))
             {
-                temp = Busk.rand.Next(40, 141);
+                temp = new Random().Next(40, 141);
 
             }
             list.Add(temp);
+            Console.WriteLine($"My number is {temp}");
             return temp;
         }
+
+
     }
 }

@@ -10,11 +10,9 @@ namespace Busket
     {
         public int Weight { get; set; }
 
-        public Random rand = new Random();
-
         public Busket1()
         {
-            Weight = rand.Next(40, 141);
+            Weight = new Random().Next(40, 141);
         }
     }
 }
