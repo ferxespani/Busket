@@ -38,13 +38,18 @@ namespace Busket
         public virtual int GuessNumber()
         {
             Console.WriteLine($"{Name} is thinking about number.... ");
+
             Thread.Sleep(100);
+
             int temp = rand.Next(40, 141);
+
             if (!list.Contains(temp))
             {
                 list.Add(temp);
             }
+
             Console.WriteLine($"My number is {temp}");
+
             return temp;
         }
     }

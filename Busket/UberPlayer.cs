@@ -24,14 +24,19 @@ namespace Busket
         public override int GuessNumber()
         {
             Console.WriteLine($"{Name} is thinking about number.... ");
+
             Thread.Sleep(100);
+
             int temp = startNumber + count;
+
             if(!list.Contains(temp))
             {
                 list.Add(temp);
             }
             count++;
+
             Console.WriteLine($"My number is {temp}");
+
             return temp;
         }
     }
