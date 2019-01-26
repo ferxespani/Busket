@@ -4,24 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
+
+
 namespace Busket
 {
-    class Cheater : UsualPlayer
+    class UberCheater : UsualPlayer
     {
-        public Cheater(string name) : base(name)
+        public UberCheater(string name) : base(name)
         {
+        }
+
+        private static int startNumber;
+        private static int count;
+
+        static UberCheater()
+        {
+            startNumber = 40;
+            count = 0;
         }
 
         public override int GuessNumber()
         {
             Console.WriteLine($"{Name} is thinking about number.... ");
             Thread.Sleep(100);
-            int temp = rand.Next(40, 141);
-            while (list.Contains(temp))
+            int temp = startNumber + count;
+            if (list.Contains(temp))
             {
-                temp = rand.Next(40, 141);
+                startNumber++;
+                temp = startNumber + count;
             }
             list.Add(temp);
+            count++;
             Console.WriteLine($"My number is {temp}");
             return temp;
         }
