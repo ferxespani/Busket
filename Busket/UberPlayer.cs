@@ -17,7 +17,7 @@ namespace Busket
             count = 0;
         }
 
-        public UberPlayer(string name) : base(name)
+        public UberPlayer(string name, CounterKeeper counterKeeper, Busket1 busket) : base(name, counterKeeper, busket)
         {
         }
 

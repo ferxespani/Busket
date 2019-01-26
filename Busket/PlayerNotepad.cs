@@ -10,7 +10,7 @@ namespace Busket
     {
         static private List<int> NotepadList;
 
-        public PlayerNotepad(string name) : base(name)
+        public PlayerNotepad(string name, CounterKeeper counterKeeper, Busket1 busket) : base(name, counterKeeper, busket)
         {
         }
 

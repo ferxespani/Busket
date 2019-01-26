@@ -14,6 +14,7 @@ namespace Busket
         {
             Busket1 busket = new Busket1();
             Console.WriteLine($"The weight of basket: {busket.Weight}\n");
+            CounterKeeper counterKeeper = new CounterKeeper();
 
 
             UsualPlayer[] players = new UsualPlayer[rand.Next(2, 9)];
@@ -22,59 +23,29 @@ namespace Busket
             {
                 int temp = rand.Next(1, 6);
                 if (temp == 1)
-                    players[i] = new UsualPlayer("Vitaly");
+                    players[i] = new UsualPlayer($"Vitaly {i}", counterKeeper, busket);
                 else if (temp == 2)
-                    players[i] = new PlayerNotepad("Den");
+                    players[i] = new PlayerNotepad($"Den {i}", counterKeeper, busket);
                 else if (temp == 3)
-                    players[i] = new UberPlayer("Maxim");
+                    players[i] = new UberPlayer($"Maxim {i}", counterKeeper, busket);
                 else if (temp == 4)
-                    players[i] = new Cheater("Vlad");
+                    players[i] = new Cheater($"Vlad {i}", counterKeeper, busket);
                 else
-                    players[i] = new UberCheater("Kostya");
+                    players[i] = new UberCheater($"Kostya {i}", counterKeeper, busket);
             }
-
-            int counter = 1;
-
-            while (!busket.WeightGuessed && counter < 101)
+            Console.WriteLine($"The number of players is {players.Length}");
+            List<Task> playerTaskList = new List<Task>();
+            foreach (var p in players)
             {
-                foreach (var s in players)
-                {
-                    Console.WriteLine($"Number of attempt: {counter}");
-                    bool check = CheckWeight(busket, s);
-                    if (check)
-                    {
-                        Console.WriteLine($"Player {s.Name} have guessed a number.");
-                        break;
-                    }
-                    else if (counter == 100)
-                    {
-                        Console.WriteLine("Nobody have guessed a number after 100 attempts");
-                        counter++;
-                        break;
-                    }
-                    else
-                    {
-                        counter++;
-                    }
-                }
+                playerTaskList.Add(p.RunThread());
             }
 
+            Task.WaitAny(playerTaskList.ToArray());
+
+            Console.ReadKey();
         }
 
-        static bool CheckWeight(Busket1 b, UsualPlayer p)
-        {
-            if (p.GuessNumber() == b.Weight)
-            {
-                Console.WriteLine("Congratulation! The weight of basket was guessed\n");
-                b.WeightGuessed = true;
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("The answer is not correct\n");
-                return false;
-            }
-        }
+        
 
     }
 }
