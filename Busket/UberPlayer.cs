@@ -6,34 +6,33 @@ using System.Threading;
 
 namespace Busket
 {
-    class PlayerNotepad : UsualPlayer
+    class UberPlayer : UsualPlayer
     {
-        static private List<int> NotepadList;
+        private static int startNumber;
+        private static int count;
 
-        public PlayerNotepad(string name) : base(name)
+        static UberPlayer()
         {
+            startNumber = 40;
+            count = 0;
         }
 
-        static PlayerNotepad()
+        public UberPlayer(string name) : base(name)
         {
-            NotepadList = new List<int>();
         }
 
         public override int GuessNumber()
         {
             Console.WriteLine($"{Name} is thinking about number.... ");
             Thread.Sleep(100);
-            int temp = rand.Next(40, 141);
-            while (NotepadList.Contains(temp))
+            int temp = startNumber + count;
+            if(!list.Contains(temp))
             {
-                temp = rand.Next(40, 141);
+                list.Add(temp);
             }
-            NotepadList.Add(temp);
-            list.Add(temp);
+            count++;
             Console.WriteLine($"My number is {temp}");
             return temp;
         }
-
-
     }
 }

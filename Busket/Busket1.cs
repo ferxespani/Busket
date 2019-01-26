@@ -10,9 +10,30 @@ namespace Busket
     {
         public int Weight { get; set; }
 
+        private Random rand = new Random();
+
         public Busket1()
         {
-            Weight = new Random().Next(40, 141);
+            for (int i = 0; i < rand.Next(100); i++)
+            {
+                Weight += rand.Next(40, 141);
+            }
+            while (Weight > 140)
+            {
+                Weight /= 2;
+            }
+             while(Weight < 40)
+            {
+                if(Weight == 0)
+                {
+                    Weight = Weight + 40 + rand.Next(101);
+                }
+                else
+                {
+                    int temp = 40 - Weight;
+                    Weight = Weight + temp + rand.Next(101);
+                }
+            }
         }
     }
 }
