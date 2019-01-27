@@ -10,7 +10,7 @@ namespace Busket
 {
     class UberCheater : UsualPlayer
     {
-        public UberCheater(string name, CounterKeeper counterKeeper, Busket1 busket) : base(name, counterKeeper, busket)
+        public UberCheater(string name) : base(name)
         {
         }
 

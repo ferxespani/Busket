@@ -8,7 +8,7 @@ namespace Busket
 {
     class Cheater : UsualPlayer
     {
-        public Cheater(string name, CounterKeeper counterKeeper, Busket1 busket) : base(name, counterKeeper, busket)
+        public Cheater(string name) : base(name)
         {
         }
 
