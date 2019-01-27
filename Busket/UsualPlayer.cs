@@ -29,7 +29,7 @@ namespace Busket
 
         public void GetList()
         {
-            foreach(int s in list)
+            foreach (int s in list)
             {
                 Console.WriteLine($"{s}  ");
             }
