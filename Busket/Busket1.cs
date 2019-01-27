@@ -22,12 +22,14 @@ namespace Busket
             {
                 Weight += rand.Next(40, 141);
             }
+
             while (Weight > 140)
             {
                 Weight /= 2;
             }
+
              while(Weight < 40)
-            {
+             {
                 if(Weight == 0)
                 {
                     Weight = Weight + 40 + rand.Next(101);
@@ -37,7 +39,7 @@ namespace Busket
                     int temp = 40 - Weight;
                     Weight = Weight + temp + rand.Next(101);
                 }
-            }
+             }
         }
     }
 }
