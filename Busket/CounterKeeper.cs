@@ -9,5 +9,6 @@ namespace Busket
     class CounterKeeper
     {
         public int counter = 1;
+        public bool check = false;
     }
 }

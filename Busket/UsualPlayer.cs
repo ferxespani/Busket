@@ -55,7 +55,7 @@ namespace Busket
 
         public void ResultComparator()
         {
-            while (true)
+            while (!counterKeeper.check)
             {
                 lock (counterKeeper)
                 {
@@ -66,6 +66,10 @@ namespace Busket
                 bool check = CheckWeight(basket, this);
                 if (check)
                 {
+                    lock (counterKeeper)
+                    {
+                        counterKeeper.check = check;
+                    }
                     Console.WriteLine($"Player {Name} have guessed a number.");
                     break;
                 }
