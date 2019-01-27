@@ -59,8 +59,13 @@ namespace Busket
             {
                 lock (counterKeeper)
                 {
+                    if (counterKeeper.counter > 100)
+                    {
+                        break;
+                    }
                     Console.WriteLine($"Number of attempt: {counterKeeper.counter}");
                     counterKeeper.counter++;
+
                 }
 
                 bool check = CheckWeight(basket, this);
@@ -74,15 +79,7 @@ namespace Busket
                     break;
                 }
 
-                
-
-                if (counterKeeper.counter >= 100)
-                {
-                    Console.WriteLine("Nobody have guessed a number after 100 attempts");
-                    break;
-                }
-
-               Thread.Sleep(100);
+                Thread.Sleep(100);
             }
 
         }
@@ -90,13 +87,13 @@ namespace Busket
         {
             if (p.GuessNumber() == b.Weight)
             {
-                Console.WriteLine("Congratulation! The weight of basket was guessed\n");
+                Console.WriteLine($"Congratulation {Name}! The weight of basket was guessed\n");
                 b.WeightGuessed = true;
                 return true;
             }
             else
             {
-                Console.WriteLine("The answer is not correct\n");
+                Console.WriteLine($"{Name}'s answer is not correct\n");
                 return false;
             }
         }

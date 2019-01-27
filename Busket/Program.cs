@@ -40,8 +40,11 @@ namespace Busket
                 playerTaskList.Add(p.RunThread());
             }
 
-            Task.WaitAny(playerTaskList.ToArray());
-
+            Task.WaitAll(playerTaskList.ToArray());
+            if (counterKeeper.counter > 100)
+            {
+                Console.WriteLine("Nobody have guessed a number after 100 attempts");
+            }
             Console.ReadKey();
         }
 

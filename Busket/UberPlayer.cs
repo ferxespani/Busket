@@ -31,7 +31,7 @@ namespace Busket
                 list.Add(temp);
             }
             count++;
-            Console.WriteLine($"My number is {temp}");
+            Console.WriteLine($"{Name} number is {temp}");
             return temp;
         }
     }

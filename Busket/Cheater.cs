@@ -22,7 +22,7 @@ namespace Busket
                 temp = rand.Next(40, 141);
             }
             list.Add(temp);
-            Console.WriteLine($"My number is {temp}");
+            Console.WriteLine($"{Name} number is {temp}");
             return temp;
         }
     }
