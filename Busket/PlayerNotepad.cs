@@ -21,7 +21,6 @@ namespace Busket
 
         public override int GuessNumber()
         {
-            Console.WriteLine($"{Name} is thinking about number.... ");
             Thread.Sleep(100);
             int temp = rand.Next(40, 141);
             while (NotepadList.Contains(temp))
@@ -30,7 +29,7 @@ namespace Busket
             }
             NotepadList.Add(temp);
             list.Add(temp);
-            Console.WriteLine($"{Name} number is {temp}");
+            ClosestNumber(temp);
             return temp;
         }
 

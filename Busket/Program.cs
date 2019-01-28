@@ -33,7 +33,7 @@ namespace Busket
                 else
                     players[i] = new UberCheater($"Kostya {i}", counterKeeper, busket);
             }
-            Console.WriteLine($"The number of players is {players.Length}");
+            Console.WriteLine($"The number of players is {players.Length}\n");
             List<Task> playerTaskList = new List<Task>();
             foreach (var p in players)
             {
@@ -44,6 +44,7 @@ namespace Busket
             if (counterKeeper.counter > 100)
             {
                 Console.WriteLine("Nobody have guessed a number after 100 attempts");
+                players[0].WhoIsCloser();
             }
             Console.ReadKey();
         }

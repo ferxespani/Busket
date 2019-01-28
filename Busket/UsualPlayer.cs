@@ -13,6 +13,8 @@ namespace Busket
         public string Name { get; set; }
 
         protected static List<int> list;
+        protected static List<int> whoIsCloserList;
+        protected static List<string> namesList;
 
         protected static Random rand;
         public CounterKeeper counterKeeper;
@@ -21,6 +23,8 @@ namespace Busket
         static UsualPlayer()
         {
             list = new List<int>();
+            whoIsCloserList = new List<int>();
+            namesList = new List<string>();
             rand = new Random();
         }
 
@@ -32,24 +36,46 @@ namespace Busket
 
         }
 
-        public void GetList()
+        public void ClosestNumber(int guessNumber)
         {
-            foreach (int s in list)
+            int temp = basket.Weight - guessNumber;
+            whoIsCloserList.Add(temp);
+            namesList.Add(Name);
+        }
+
+        public  void WhoIsCloser()
+        {
+            int min = 0;
+            int counter = 0;
+            for (int i = 1; i < 140; i++)
             {
-                Console.WriteLine($"{s}  ");
+                if (whoIsCloserList.Contains(i) || whoIsCloserList.Contains(-i))
+                {
+                    for(int j = 0; j < whoIsCloserList.Count; j++)
+                    {
+                        if(whoIsCloserList[j] == i || whoIsCloserList[j] == -i)
+                        {
+                            min = whoIsCloserList[j];
+                            counter = j;
+                            break;
+                        }
+                    }
+                    break;
+                }
             }
+            
+
+            Console.WriteLine($"But player {namesList[counter]} was closer than others with number {basket.Weight - min}");
         }
 
         public virtual int GuessNumber()
         {
-            Console.WriteLine($"{Name} is thinking about number.... ");
-
             int temp = rand.Next(40, 141);
             if (!list.Contains(temp))
             {
                 list.Add(temp);
             }
-            Console.WriteLine($"{Name} number is {temp}");
+            ClosestNumber(temp);
             return temp;
         }
 
@@ -63,7 +89,6 @@ namespace Busket
                     {
                         break;
                     }
-                    Console.WriteLine($"Number of attempt: {counterKeeper.counter}");
                     counterKeeper.counter++;
 
                 }
@@ -75,7 +100,7 @@ namespace Busket
                     {
                         counterKeeper.check = check;
                     }
-                    Console.WriteLine($"Player {Name} have guessed a number.");
+                    Console.WriteLine($"Player {Name} have guessed a number. Number of attempt: {counterKeeper.counter}\n");
                     break;
                 }
 
@@ -93,7 +118,6 @@ namespace Busket
             }
             else
             {
-                Console.WriteLine($"{Name}'s answer is not correct\n");
                 return false;
             }
         }
