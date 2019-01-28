@@ -17,11 +17,13 @@ namespace Busket
             CounterKeeper counterKeeper = new CounterKeeper();
 
 
-            UsualPlayer[] players = new UsualPlayer[rand.Next(2, 9)];
+            UsualPlayer[] players = new UsualPlayer[5];
+
+            Console.WriteLine("Add players: 1 - player, 2 - NodPadPlayer, 3 - uberPlayer, 4 - Cheater, 5 - UberPlayer");
 
             for (int i = 0; i < players.Length; i++)
-            {
-                int temp = rand.Next(1, 6);
+            {                
+                int temp = int.Parse(Console.ReadLine());
                 if (temp == 1)
                     players[i] = new UsualPlayer($"Vitaly {i}", counterKeeper, busket);
                 else if (temp == 2)
