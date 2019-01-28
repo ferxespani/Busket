@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Busket1.cs" />
     <Compile Include="Cheater.cs" />
+    <Compile Include="CounterKeeper.cs" />
     <Compile Include="PlayerNotepad.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
