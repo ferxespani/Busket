@@ -10,7 +10,7 @@ namespace Busket
     {
         static private List<int> NotepadList;
 
-        public PlayerNotepad(string name) : base(name)
+        public PlayerNotepad(string name, CounterKeeper counterKeeper, Busket1 busket) : base(name, counterKeeper, busket)
         {
         }
 
@@ -22,21 +22,15 @@ namespace Busket
         public override int GuessNumber()
         {
             Console.WriteLine($"{Name} is thinking about number.... ");
-
             Thread.Sleep(100);
-
             int temp = rand.Next(40, 141);
-
             while (NotepadList.Contains(temp))
             {
                 temp = rand.Next(40, 141);
             }
-
             NotepadList.Add(temp);
             list.Add(temp);
-
-            Console.WriteLine($"My number is {temp}");
-
+            Console.WriteLine($"{Name} number is {temp}");
             return temp;
         }
 
